@@ -1,11 +1,11 @@
 import './App.css'
 import './index.css'
-import SignUp from './Components/SignUp'
 import ListUserDataComponents from './Components/ListUserDataComponents'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import UserComponent from './Components/UserComponent'
 import Home from './Components/Home'
 import LoginForm from './Components/Login/LoginForm'
+import SignUpForm from './Components/Signup/SignUpForm'
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<LoginForm/>} />
 
           // Defined for the SignUp page
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup" element={<SignUpForm />} />
 
           // Defined for the Home page
           <Route path='/home' element={<Home/>} />
