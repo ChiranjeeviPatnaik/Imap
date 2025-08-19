@@ -35,7 +35,7 @@ const UserComponent = () => {
                 });
             } else {
                 createUser(userInfo).then(() => {
-                    navigate('/');
+                    navigate('/users');
                 }).catch(error => {
                     console.error("There was an error creating the user! ", error);
                 });
