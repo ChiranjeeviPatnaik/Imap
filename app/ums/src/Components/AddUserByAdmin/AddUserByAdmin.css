@@ -1,0 +1,142 @@
+.add-user-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+}
+
+.user-form-card {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    color: #fff;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.form-field {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-groupDropdown {
+    margin-bottom: 18px;
+}
+
+.form-field label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.input-field {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-field::placeholder,
+.form-control::placeholder {
+    color: #cccccc;
+    opacity: 1;
+    font-weight: 400;
+}
+
+.input-field:focus {
+    border-color: #007bff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.input-field.invalid {
+    border-color: #ff4d4f;
+}
+
+.error-text {
+    margin-top: 4px;
+    color: #ff4d4f;
+    font-size: 14px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #0069d9;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #999;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: rgba(255, 255, 255, 0.15);
+    outline: none;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+}
+
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.form-control.is-invalid {
+    border-color: #ff4d4f;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 6px rgba(255, 77, 79, 0.4);
+}
