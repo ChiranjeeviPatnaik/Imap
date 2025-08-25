@@ -48,7 +48,7 @@ const LoginForm = () => {
                 </div>
                 <div className="remember-forgot">
                     <label><input type='checkbox' checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />Remember me</label>
-                    <a href="#">Forgot Password?</a>
+                    <a href="#" onClick={() => navigate("/forgotPassword")}>Forgot Password?</a>
                 </div>
                 <button type='submit'>Login</button>
                 <div className="regester-link">

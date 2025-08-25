@@ -40,7 +40,7 @@ const ListUserDataComponents = () => {
 
     return (
         <div className="container">
-            <h2 className="text-center"> List of Users</h2>
+            <h2 className="text-center">List of Users</h2>
             <button className="btn btn-dark mb-2" onClick={addNewUser}>Add User</button>
             <table className="table table-striped table-bordered">
                 <thead>

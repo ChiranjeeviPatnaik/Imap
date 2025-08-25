@@ -46,7 +46,7 @@ const SignUpForm = () => {
         </div>
         <button type='submit'>Sign Up</button>
         <div className="register-link">
-          <p>Already have an account? <a href="#" onClick={() => navigate("/login")} >Login</a></p>
+          <p>Already have an account? <a href="#" className='redirect-Login' onClick={() => navigate("/login")} >Login</a></p>
         </div>
       </form>
     </div>

@@ -6,6 +6,7 @@ import UserComponent from './Components/UserComponent'
 import Home from './Components/Home'
 import LoginForm from './Components/Login/LoginForm'
 import SignUpForm from './Components/Signup/SignUpForm'
+import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
 
           // Defined for the SignUp page
           <Route path="/signup" element={<SignUpForm />} />
+
+          // Defined for the Forgot Password page
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
 
           // Defined for the Home page
           <Route path='/home' element={<Home/>} />
