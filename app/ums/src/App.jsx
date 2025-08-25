@@ -1,13 +1,12 @@
 import './App.css'
 import './index.css'
-import ListUserDataComponents from './Components/ListUserDataComponents'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import UserComponent from './Components/UserComponent'
 import Home from './Components/Home'
 import LoginForm from './Components/Login/LoginForm'
 import SignUpForm from './Components/Signup/SignUpForm'
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
 import ListUserData from './Components/ListUserData/ListUserData'
+import AddUserByAdmin from './Components/AddUserByAdmin/AddUserByAdmin'
 
 function App() {
 
@@ -32,10 +31,10 @@ function App() {
           <Route path='/users' element={<ListUserData />} />
 
           // Defined for to add a new user by ADMIN Side
-          <Route path='add-user' element={<UserComponent/>} />
+          <Route path='add-user' element={<AddUserByAdmin/>} />
 
           // Defined for to edit by user
-          <Route path='edit-user/:id' element={<UserComponent/>} />
+          <Route path='edit-user/:id' element={<AddUserByAdmin/>} />
 
         </Routes>
       </BrowserRouter>
