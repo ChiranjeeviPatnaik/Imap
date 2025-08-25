@@ -7,6 +7,7 @@ import Home from './Components/Home'
 import LoginForm from './Components/Login/LoginForm'
 import SignUpForm from './Components/Signup/SignUpForm'
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
+import ListUserData from './Components/ListUserData/ListUserData'
 
 function App() {
 
@@ -27,8 +28,8 @@ function App() {
           // Defined for the Home page
           <Route path='/home' element={<Home/>} />
 
-          // Defined for to show list of User Data
-          <Route path='/users' element={<ListUserDataComponents />} />
+          // Defined for to show list of Users Data
+          <Route path='/users' element={<ListUserData />} />
 
           // Defined for to add a new user by ADMIN Side
           <Route path='add-user' element={<UserComponent/>} />
