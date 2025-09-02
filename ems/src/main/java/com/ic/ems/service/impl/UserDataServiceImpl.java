@@ -1,72 +1,63 @@
 package com.ic.ems.service.impl;
 
-import com.ic.ems.dto.UserDataDto;
 import com.ic.ems.entity.UserData;
-import com.ic.ems.exception.ResourceNotFoundException;
-import com.ic.ems.mapper.UserDataMapper;
+import com.ic.ems.io.ProfileRequest;
+import com.ic.ems.io.ProfileResponse;
 import com.ic.ems.repository.UserInfoRepository;
 import com.ic.ems.service.UserDataService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserDataServiceImpl implements UserDataService {
     @Autowired
     UserInfoRepository userInfoRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     // To create the User Information
     @Override
-    public UserDataDto createUser(UserDataDto UserDataDto) {
-        UserData userData = UserDataMapper.mapToUserData(UserDataDto);
-        UserData savedUserData = userInfoRepository.save(userData);
-        return UserDataMapper.mapToUserDataDto(savedUserData);
-    }
-
-    // To get User Information by ID
-    @Override
-    public UserDataDto getUserById(Long userId) {
-        UserData userData = userInfoRepository.findById(userId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("User is not exists with given ID : " +userId));
-        return UserDataMapper.mapToUserDataDto(userData);
-    }
-
-    // To get all Users Information
-    @Override
-    public List<UserDataDto> getAllUserData() {
-        List<UserData> userData = userInfoRepository.findAll();
-        return userData.stream().map((user) -> UserDataMapper.mapToUserDataDto(user))
-                .collect(Collectors.toList());
-    }
-
-    // To update the User Information by ID
-    @Override
-    public UserDataDto updateUser(Long userId, UserDataDto updatedUser) {
-        UserData userData = userInfoRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User is not exists with given ID : "+userId));
-        userData.setFirstName(updatedUser.getFirstName());
-        userData.setLastName(updatedUser.getLastName());
-        userData.setEmailId(updatedUser.getEmailId());
-        if (updatedUser != null && updatedUser.getRole().equals(null)) {
-            userData.setRole("Guest");
-        } else {
-            userData.setRole(updatedUser.getRole());
+    public ProfileResponse createProfile(ProfileRequest request) {
+        UserData newProfile = convertToUserData(request);
+        if (!userInfoRepository.existsByEmailId(request.getEmailId())) {
+            newProfile = userInfoRepository.save(newProfile);
+            return convertToProfileResponse(newProfile);
         }
-        userData.setRole(updatedUser.getRole());
-        userData.setPhoneNumber(updatedUser.getPhoneNumber());
-        UserData updatedUserObj = userInfoRepository.save(userData);
-        return UserDataMapper.mapToUserDataDto(updatedUserObj);
+        throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already exists");
     }
 
-    // To delete the User Information by ID
-    @Override
-    public void deleteUser(Long userId) {
-        UserData userData = userInfoRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User is not exists with given ID : "+userId));
-        userInfoRepository.deleteById(userId);
+    private ProfileResponse convertToProfileResponse(UserData newProfile) {
+        return ProfileResponse.builder()
+                .emailId(newProfile.getEmailId())
+                .firstName(newProfile.getFirstName())
+                .phoneNumber(newProfile.getPhoneNumber())
+                .userId(newProfile.getUserId())
+                .isAccountVerified(newProfile.getIsAccountVerified())
+                .build();
+    }
+
+    private UserData convertToUserData(ProfileRequest request) {
+        return UserData.builder()
+                .emailId(request.getEmailId())
+                .userId(UUID.randomUUID().toString())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .phoneNumber(request.getPhoneNumber())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .isAccountVerified(false)
+                .restOtpExpireAt(0L)
+                .verifyOtp(null)
+                .verifyOtpExpireAt(0L)
+                .resetOtp(null)
+                .build();
     }
 
 }
