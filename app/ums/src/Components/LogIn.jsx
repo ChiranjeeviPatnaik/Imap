@@ -42,7 +42,7 @@ const Login = () => {
 
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email address</label>
+                        <label htmlFor="email" className="form-label">Email Id:</label>
                         <input
                             type="email"
                             className="form-control"
@@ -55,7 +55,7 @@ const Login = () => {
                     </div>
 
                     <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">Password:</label>
                         <div className="input-group">
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -93,13 +93,13 @@ const Login = () => {
                         Login
                     </button>
                     <div className="text-center mt-3">
-                    <button
-                        type="button"
-                        className="btn btn-link"
-                        onClick={() => navigate("/signup")}
-                    >
-                        Don't have an account? Sign Up
-                    </button>
+                        <button
+                            type="button"
+                            className="btn btn-link"
+                            onClick={() => navigate("/signup")}
+                        >
+                            Don't have an account? Sign Up
+                        </button>
                     </div>
                 </form>
             </div>
