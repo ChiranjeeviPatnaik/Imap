@@ -1,12 +1,12 @@
-import './App.css'
 import './index.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Components/Home'
+import Home from './Components/Home/Home'
 import LoginForm from './Components/Login/LoginForm'
 import SignUpForm from './Components/Signup/SignUpForm'
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
 import ListUserData from './Components/ListUserData/ListUserData'
 import AddUserByAdmin from './Components/AddUserByAdmin/AddUserByAdmin'
+import About from './Components/About/about'
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           // Defined for the Login page
-          <Route path="/" element={<LoginForm/>} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginForm/>} />
 
           // Defined for the SignUp page
@@ -36,6 +36,8 @@ function App() {
           // Defined for to edit by user
           <Route path='edit-user/:id' element={<AddUserByAdmin/>} />
 
+          // Defined for about page
+          <Route path='/about' element={<About/>} />
         </Routes>
       </BrowserRouter>
     </>
